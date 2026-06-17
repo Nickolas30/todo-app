@@ -13,7 +13,7 @@ Aplicação web simples de lista de tarefas (To-Do List), onde o usuário pode a
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/SEU_USUARIO/todo-app.git
+git clone https://github.com/Nickolas30/todo-app.git
 cd todo-app
 ```
 
