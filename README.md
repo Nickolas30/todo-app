@@ -1,15 +1,17 @@
-# 📝 To-Do List App
+﻿# 📝 Lista de Tarefas
 
 ## Descrição
-Aplicação web simples de lista de tarefas (To-Do List), onde o usuário pode adicionar, marcar como concluída e remover tarefas. O projeto resolve o problema de organização de tarefas diárias de forma rápida e visual.
+Aplicação web de lista de tarefas, onde o usuário pode adicionar, marcar como concluída e remover tarefas. As tarefas ficam salvas em um banco PostgreSQL, então continuam lá mesmo depois de reiniciar a aplicação.
 
 ## Tecnologias Utilizadas
-- **Backend:** Python + Flask
+- **Backend:** Python + Flask + Flask-SQLAlchemy
+- **Banco de dados:** PostgreSQL 16
 - **Frontend:** HTML, CSS e JavaScript (puro)
-- **Containerização:** Docker
+- **Containerização:** Docker e Docker Compose
+- **Servidor de aplicação:** Gunicorn
 - **CI/CD:** GitHub Actions
 
-## Guia de Instalação (via Docker)
+## Como executar (Docker Compose)
 
 1. Clone o repositório:
 ```bash
@@ -17,19 +19,29 @@ git clone https://github.com/Nickolas30/todo-app.git
 cd todo-app
 ```
 
-2. Construa a imagem Docker:
+2. Crie o arquivo de variáveis de ambiente e troque a senha:
 ```bash
-docker build -t todo-app .
+cp .env.example .env
 ```
+(no PowerShell, use `copy .env.example .env`)
 
-3. Execute o container:
+3. Suba a aplicação e o banco:
 ```bash
-docker run -p 5000:5000 todo-app
+docker compose up --build
 ```
 
 4. Acesse no navegador:
 http://localhost:5000
 
-## Membros da Duo
-- Nickolas Eduardo Gonçalves de Oliveira — Matrícula: 01711842
-- Nicolas Carneiro de Lima — Matrícula: 01706055
+Para parar: `docker compose down`. Os dados ficam guardados em um volume do Docker e só são apagados com `docker compose down -v`.
+
+## Estrutura
+- `app.py`: rotas da API e modelo do banco
+- `templates/index.html`: interface
+- `Dockerfile`: imagem da aplicação
+- `docker-compose.yml`: aplicação + PostgreSQL
+- `.github/workflows/docker-build.yml`: build automático no GitHub Actions
+
+## Autores
+- Nickolas Eduardo Gonçalves de Oliveira
+- Nicolas Carneiro de Lima
